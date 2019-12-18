@@ -12,11 +12,11 @@ const hashPassword = password => {
 
 const createToken = async userEmail => {
   const newToken = crypto.randomBytes(16).toString("base64");
+  console.log("CREATED A TOKEN")
   const response = await db.one(
     `UPDATE users SET browser_token = $1, browser_issue = LOCALTIMESTAMP WHERE email = $2 RETURNING browser_token, account_name;`,
     [newToken, userEmail]
   );
-
   return response;
 };
 
@@ -43,7 +43,7 @@ async function login(enteredEmail, enteredPassword) {
     const token = await createToken(enteredEmail);
     return token;
   } catch (err) {
-    return "email and password do not match records";
+    return err;
   }
 }
 async function signup(enteredAccount, enteredEmail, enteredPassword) {
@@ -61,7 +61,7 @@ async function signup(enteredAccount, enteredEmail, enteredPassword) {
       `CREATE TABLE recipes_id${response.id} (
             id serial primary key,
             name varchar(200),
-            subject varchar ARRAY
+            recipe varchar(500)
         );`
     );
     return "success";
