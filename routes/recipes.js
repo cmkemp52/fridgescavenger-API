@@ -13,14 +13,14 @@ router.post("/retreive", async (req, res, next) => {
 });
 
 router.post("/add", async (req, res, next) => {
-  const { account, token, isbn } = req.body;
-  const response = await reciperemove(account, token, isbn);
+  const { account, token, title, recipe } = req.body;
+  const response = await reciperemove(account, token, title, recipe);
   res.send(response);
 });
 
 router.post("/remove", async (req, res, next) => {
-  const { account, token, isbns } = req.body;
-  const response = await reciperetreive(account, token, isbns);
+  const { account, token, id } = req.body;
+  const response = await reciperetreive(account, token, id);
   res.send(response);
 });
 
