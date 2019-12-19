@@ -24,7 +24,7 @@ reciperemove = async (account, token, id) => {
   }
 };
 
-reciperetreive = async (account, token) => {
+reciperetrieve = async (account, token) => {
   try {
     const user = await tokenCheck(token, account);
     const response = await db.any(`SELECT * FROM recipes_id${user.id}`);
@@ -37,5 +37,5 @@ reciperetreive = async (account, token) => {
 module.exports = {
   recipeadd,
   reciperemove,
-  reciperetreive
+  reciperetrieve
 };
