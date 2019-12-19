@@ -1,13 +1,13 @@
 const db = require("./conn"),
   { tokenCheck } = require("../models/user");
 
-recipeadd = async (account, token, title, recipe) => {
+recipeadd = async (account, token, name, recipe) => {
   try {
     const user = await tokenCheck(token, account);
     const id = user.id;
 
-    db.none(`INSERT INTO recipes_id${id} (title, recipe) VALUES ($1, $2)`, [
-      title,
+    db.none(`INSERT INTO recipes_id${id} (name, recipe) VALUES ($1, $2)`, [
+      name,
       recipe
     ]);
   } catch (err) {
