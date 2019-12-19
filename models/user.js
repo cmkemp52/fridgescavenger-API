@@ -60,8 +60,9 @@ async function signup(enteredAccount, enteredEmail, enteredPassword) {
     await db.none(
       `CREATE TABLE recipes_id${response.id} (
             id serial primary key,
-            title varchar(200),
-            recipe varchar(500)
+            recipename varchar(200),
+            recipeid varchar(500),
+            recipeimage varchar(500)
         );`
     );
     return "success";
