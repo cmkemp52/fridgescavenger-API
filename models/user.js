@@ -12,7 +12,7 @@ const hashPassword = password => {
 
 const createToken = async userEmail => {
   const newToken = crypto.randomBytes(16).toString("base64");
-  console.log("CREATED A TOKEN")
+  console.log("CREATED A TOKEN");
   const response = await db.one(
     `UPDATE users SET browser_token = $1, browser_issue = LOCALTIMESTAMP WHERE email = $2 RETURNING browser_token, account_name;`,
     [newToken, userEmail]
@@ -60,7 +60,7 @@ async function signup(enteredAccount, enteredEmail, enteredPassword) {
     await db.none(
       `CREATE TABLE recipes_id${response.id} (
             id serial primary key,
-            name varchar(200),
+            title varchar(200),
             recipe varchar(500)
         );`
     );
